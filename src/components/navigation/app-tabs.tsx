@@ -14,11 +14,18 @@ import CustomTabBar from "./custom-tabs";
 const t = {
   ko: {
     home: "메인",
+    tierlist: "티어리스트",
     community: "커뮤니티",
     mypage: "마이페이지",
     plus: "추가",
   },
-  en: { home: "Home", community: "Community", mypage: "My Page", plus: "Add" },
+  en: {
+    home: "Home",
+    tierlist: "Tier List",
+    community: "Community",
+    mypage: "My Page",
+    plus: "Add",
+  },
 };
 
 // iOS 26+ 만 NativeTabs(리퀴드글래스 탭바)를 쓴다. 그 미만은 커스텀 탭바로 폴백.
@@ -39,6 +46,13 @@ export default function AppTabs() {
       <NativeTabs.Trigger name="(home)">
         <NativeTabs.Trigger.Label>{translate("home")}</NativeTabs.Trigger.Label>
         <NativeTabs.Trigger.Icon sf="house" />
+      </NativeTabs.Trigger>
+
+      <NativeTabs.Trigger name="(tierlist)">
+        <NativeTabs.Trigger.Label>
+          {translate("tierlist")}
+        </NativeTabs.Trigger.Label>
+        <NativeTabs.Trigger.Icon sf="chart.bar" />
       </NativeTabs.Trigger>
 
       {/* <NativeTabs.Trigger name="(community)">

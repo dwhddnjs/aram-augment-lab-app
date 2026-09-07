@@ -2,7 +2,7 @@
   "expo": {
     "name": "Augment Lab",
     "slug": "augment-lab",
-    "version": "1.3.3",
+    "version": "1.3.4",
     "orientation": "default",
     "icon": "./assets/store/icon-aram-ios-1024.png",
     "scheme": "augmentlab",

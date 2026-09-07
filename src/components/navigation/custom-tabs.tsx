@@ -2,8 +2,8 @@
  * CustomTabBar — iOS 26 미만 폴백 하단 탭바.
  * iOS 26+는 NativeTabs(리퀴드글래스)를 그대로 쓰고, 그 미만에서만 이 컴포넌트가 렌더된다.
  *
- * `expo-router/ui`의 headless Tabs로 구성한다. 좌=메인, 중앙=원형 플러스 액션버튼,
- * 우=마이페이지. 중앙 버튼은 탭 전환 없이 mode-select 모달만 연다(기존 NativeTabs 동작과 동일):
+ * `expo-router/ui`의 headless Tabs로 구성한다. 메인 / 티어리스트 / 마이페이지 /
+ * 원형 플러스 액션버튼 순. 플러스는 탭 전환 없이 mode-select 모달만 연다(기존 NativeTabs 동작과 동일):
  * TabTrigger의 onPress에서 `e.preventDefault()`를 호출하면 useTabTrigger가 탭 전환을 건너뛴다.
  *
  * 아이콘은 SF Symbol을 쓸 수 없는 RN 트리(Pressable/Image)이므로
@@ -29,8 +29,8 @@ import { useTheme } from "@/hooks/use-theme";
 import { useTranslation } from "@/lib/i18n";
 
 const t = {
-  ko: { home: "메인", mypage: "마이페이지" },
-  en: { home: "Home", mypage: "My Page" },
+  ko: { home: "메인", tierlist: "티어리스트", mypage: "마이페이지" },
+  en: { home: "Home", tierlist: "Tier List", mypage: "My Page" },
 };
 
 type TabButtonProps = {
@@ -117,10 +117,12 @@ export default function CustomTabBar() {
           />
         </TabTrigger>
 
-        <TabTrigger name="plus" href="/(tabs)/plus" asChild onPress={openModal}>
-          <CenterPlusButton
-            accentColor={colors.accent.default}
-            iconColor={colors.text.inverse}
+        <TabTrigger name="(tierlist)" href="/(tabs)/(tierlist)" asChild>
+          <TabButton
+            icon="bar-chart"
+            label={translate("tierlist")}
+            activeColor={colors.accent.default}
+            inactiveColor={colors.text.secondary}
           />
         </TabTrigger>
 
@@ -130,6 +132,13 @@ export default function CustomTabBar() {
             label={translate("mypage")}
             activeColor={colors.accent.default}
             inactiveColor={colors.text.secondary}
+          />
+        </TabTrigger>
+
+        <TabTrigger name="plus" href="/(tabs)/plus" asChild onPress={openModal}>
+          <CenterPlusButton
+            accentColor={colors.accent.default}
+            iconColor={colors.text.inverse}
           />
         </TabTrigger>
       </TabList>

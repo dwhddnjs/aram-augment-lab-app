@@ -170,6 +170,34 @@ export const AugmentRarityColorsLight: typeof AugmentRarityColors = {
   prismatic: { border: "#9877DA" },
 };
 
+/**
+ * 챔피언 티어(S~D) 색 — 인게임 등급 위계를 그대로 빌린다.
+ * S 프리즘 / A 골드 / B 실버 는 위 증강 희귀도 색을 재사용하고(같은 색이 같은 등급을
+ * 뜻해야 한다), C 는 그 아래 "쇠", D 는 무채색 바닥이다.
+ *
+ * 쓰이는 곳은 티어 배너 그라데이션과 챔피언 타일 테두리 — 둘 다 UI 요소라 대비 기준이
+ * 3:1 이다. 라이트 짝을 따로 두는 이유는 useRarityColors 주석과 같다(프리즘이 흰 배경에서 사라진다).
+ */
+export const TierColors: Record<
+  "dark" | "light",
+  Record<"S" | "A" | "B" | "C" | "D", string>
+> = {
+  dark: {
+    S: AugmentRarityColors.prismatic.border,
+    A: AugmentRarityColors.gold.border,
+    B: AugmentRarityColors.silver.border,
+    C: "#6D737C",
+    D: "#4F545C",
+  },
+  light: {
+    S: AugmentRarityColorsLight.prismatic.border,
+    A: AugmentRarityColorsLight.gold.border,
+    B: AugmentRarityColorsLight.silver.border,
+    C: "#5C626A",
+    D: "#43484F",
+  },
+};
+
 // 증강 아이콘 미해결 시 표시하는 희귀도 폴백 글리프 (MaterialCommunityIcons).
 // 여러 feature(aram·builds·items)가 공유하므로 여기 단일 정의를 import해 쓴다.
 export const AugmentRarityGlyphs = {
