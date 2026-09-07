@@ -52,6 +52,7 @@
     "web": "expo start --web",
     "lint": "expo lint",
     "data:refresh": "npx tsx scripts/fetch-data/index.ts",
+    "data:tierlist": "npx tsx scripts/fetch-data/fetch-tierlist.ts",
     "data:item-stats": "node scripts/parse-item-stats.mjs"
   },
   "private": true
